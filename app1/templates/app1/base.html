@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title> 
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet"/>
+</head>
+<body>
+{% block body %}
+<script src=" {% static 'js/header_menu.js' %} "></script>
+<header>
+    <h1><a href="http://127.0.0.1:8000/main/">Главная страница</a></h1>
+    <nav>
+        <ul>
+            <li><a href="http://127.0.0.1:8000/users/">Пользователи</a></li>
+            <li><a href="http://127.0.0.1:8000/about/">О нас</a></li>
+        </ul>
+     </nav>
+</header>
+
+{% endblock body %}
+</body>
+</html>
+
+
+<div class='block-content'>
+    {% block content %}
+    
+    <ul>
+        {% for p in post %}
+        <li>
+            <h2>{{p.username}}</h2>
+            <p>{{p.email}}</p>
+            <p>{{p.number}}</p>
+            <hr>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    {% endblock content %}
+    </div>
+
