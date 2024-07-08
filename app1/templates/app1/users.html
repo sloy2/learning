@@ -1,2 +1,28 @@
 {% extends 'app1/base.html' %}
 
+
+{% block content %}
+
+<h1>Пользователи</h1>
+
+<button class="search-button" onclick="toggleSearch()">Поиск</button>
+    <div id="searchFormPopup">
+        <form action="" method="GET">
+            <input type="text" name="search_query" placeholder="Введите имя для поиска">
+            <button type="submit">Искать</button>
+        </form>
+    </div>
+
+{% for info in infos %}
+    <div class="info-item">
+        <h2>{{ info.username }}</h2>
+        <p>Почта: {{ info.email }}</p>
+        <p>Номер: {{ info.number }}</p>
+        <p>Создано: {{ info.time_create }}</p>
+        <p>Последнее редактирование: {{ info.time_update }}</p>
+    </div>
+{% empty %}\\
+    <p>Данных о пользователях нет</p>
+{% endfor %}
+
+{% endblock %}

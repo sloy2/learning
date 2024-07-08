@@ -1,5 +1,10 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
 body {
-    margin: 0;
+    margin-bottom:11%;
     padding: 0;
     min-height: 100vh;
     display: flex;
@@ -68,6 +73,131 @@ nav a:hover {
     background-color: #1e1919; 
 }
 
-.block-content{
+
+h1 {
+    color: #ffcc00;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: inline-block;  /* Чтобы элементы не занимали всю ширину */
+    text-align: left;
+    width: 80%;  /* Ширина элемента */
+}
+
+.info-item h2 {
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.info-item p {
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.info-item img {
+    max-width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#searchFormPopup {
+    display: none;
+    position: absolute;
+    top: 215px;
+    left: 450px ;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1;
+    width: 30%;  /* Ширина всплывающего окна */
+
+}
+
+#searchFormPopup form {
+    display: flex;
+    justify-content: center;
+
+}
+
+#searchFormPopup input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    flex-grow: 1;
+    border: 1px solid #666;
+    border-radius: 5px;
     color: #fff;
+    background-color: #222;
+    height: 20px;
+ 
+}
+
+#searchFormPopup button[type="submit"] {
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+#searchFormPopup button[type="submit"]:hover {
+    background-color: #ffdd33;
+}
+
+.search-button {
+    background-color: #ffcc00;
+    color: #000;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+    font-size: 16px; 
+    width: 400px;
+    height: 50px;
+}
+
+.search-button:hover {
+    background-color: #ffdd33;
+}
+
+footer {
+    background-color: #000000;
+    position: fixed;
+    padding-top: 15px;
+    height: 200px ;
+    right: 0;
+    bottom: 0;
+    text-align: center; 
+    width: 100%;   
+    height: 185px;
+    font-size: 19px;
+ font-weight: bold;
+   color: #fafaff; 
+}
+
+.footer-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 10px solid #fff;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+.empty{
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 10px;
+    order: -1;
 }

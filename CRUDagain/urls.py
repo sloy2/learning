@@ -20,10 +20,13 @@ from app1.views import *
 from CRUDagain import settings
 from django.conf.urls.static import static
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),       #  
     path('', include('app1.urls') ),                 #  http://127.0.0.1:8000/main/
-    path('about/',about )
+    path('about/',about ),
+    path('users/', users_page, name='users_page'),
 ] 
 
 if settings.DEBUG:
