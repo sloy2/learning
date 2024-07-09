@@ -17,16 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app1.views import *
-from CRUDagain import settings
+from CRUDagain import settings  
 from django.conf.urls.static import static
 
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),       #  
-    path('', include('app1.urls') ),                 #  http://127.0.0.1:8000/main/
+    path('admin/', admin.site.urls),         
+    path('main/', index),                 #  http://127.0.0.1:8000/main/
     path('about/',about ),
-    path('users/', users_page, name='users_page'),
+    path('users/', infoUsers.as_view(), name='users_page'),
+    path('addpage/', addpage, name='add_page' )
 ] 
 
 if settings.DEBUG:

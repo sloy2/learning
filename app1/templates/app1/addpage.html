@@ -1,0 +1,35 @@
+{% extends 'app1/base.html' %}
+{% block content %}
+<form method="post" class="custom-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_username" class="form-label">Пользователь:</label>
+        <input type="text" id="id_username" name="username" maxlength="20" required>
+        {% if form.username.errors %}
+            <div class="error">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_email" class="form-label">Почта:</label>
+        <input type="email" id="id_email" name="email" maxlength="20" required>
+        {% if form.email.errors %}
+            <div class="error">{{ form.email.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_number" class="form-label">Номер:</label>
+        <input type="text" id="id_number" name="number" maxlength="11" required>
+        {% if form.number.errors %}
+            <div class="error">{{ form.number.errors }}</div>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="id_published" class="form-label">Опубликовать:</label>
+        <input type="checkbox" id="id_published" name="published">
+        {% if form.published.errors %}
+            <div class="error">{{ form.published.errors }}</div>
+        {% endif %}
+    </div>
+    <button type="submit" class="form-button">Submit</button>
+</form>
+{% endblock content %}

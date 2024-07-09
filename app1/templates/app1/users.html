@@ -13,6 +13,11 @@
         </form>
     </div>
 
+    <a href="{% url 'add_page' %}" class="addpage-button">Добавить запись</a>
+
+
+
+
 {% for info in infos %}
     <div class="info-item">
         <h2>{{ info.username }}</h2>
