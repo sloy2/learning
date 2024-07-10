@@ -27,11 +27,10 @@ urlpatterns = [
     path('main/', index),                 #  http://127.0.0.1:8000/main/
     path('about/',about ),
     path('users/', infoUsers.as_view(), name='users_page'),
-    path('addpage/', addpage, name='add_page' )
+    path('addpage/', addUsers.as_view(), name='add_page' ),
+    path('update/<int:pk>/', updateUsers.as_view(), name='info_update'),
+    path('delete/<int:pk>/', deleteUsers.as_view(), name='delete_info'),
 ] 
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-handler404=pageNotFound

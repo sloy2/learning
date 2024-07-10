@@ -1,24 +1,11 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseNotFound
+from django.shortcuts import render
+from django.http import JsonResponse
 from .models import *
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from .forms import AddForm
+from django.urls import reverse_lazy
+from django.db.models import Q
 
-def pageNotFound(request,exception):
-    return HttpResponseNotFound('<h>Страницы не существует</h>')
-
-def addpage(request):
-    if request.method == 'POST':
-        form = AddForm(request.POST)
-        if form.is_valid():
-            try:
-                info_table.objects.create(**form.cleaned_data)
-                return redirect('users_page')
-            except:
-                form.add_error(None, 'Ошибка добавления записи')
-        else:
-            form = AddForm()
-    return render(request,'app1/addpage.html', {'title':'Добавить запись'})
 
 def index(request):
     return render(request,'app1/index.html', {'title':'Главная страница'})
@@ -32,16 +19,52 @@ class infoUsers(ListView):
     context_object_name = 'infos'
     extra_context ={'title':"Список пользователей"}
 
-#class addUsers(CreateView):
- #   form_class = AddForm
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(published=True).order_by('id')
+        search_query = self.request.GET.get('search_query')
+        
+        if search_query:
+            queryset = queryset.filter(
+                Q(username__icontains=search_query) |
+                Q(email__icontains=search_query) |
+                Q(number__icontains=search_query)
+            )
+            
+        return queryset
+    
+class addUsers(CreateView):
+    model = info_table
+    form_class = AddForm
+    template_name = 'app1/addpage.html'
+    success_url = reverse_lazy('users_page')
+    extra_context ={'title':"Добавление записи"}
+    
+class updateUsers(UpdateView):
+    model = info_table
+    form_class = AddForm
 
+    def form_valid(self, form):
+        self.object = form.save()
+        return JsonResponse({
+            'success': True, 
+            'data': {
+                'username': self.object.username,
+                'email': self.object.email,
+                'number': self.object.number,
+                'time_update': self.object.time_update.strftime('%Y-%m-%d %H:%M:%S'),
+            }
+        })
 
-#def users_page(request):
-   # info_list = info_table.objects.filter(published=True).order_by('id')     #     http://127.0.0.1:8000/users/
+    def form_invalid(self, form):
+        return JsonResponse({'success': False, 'errors': form.errors})
 
-    #search_query = request.GET.get('search_query')
-   # if search_query:
-   #     info_list = info_list.filter(username__icontains=search_query)
+class deleteUsers(DeleteView):
+    model = info_table
+    success_url = reverse_lazy('users_page') 
 
-   # return render(request, 'app1/users.html', {'title':"Список пользователей", 'infos': info_list})
-   
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        self.object.delete()
+        return JsonResponse({'success': True})
+    

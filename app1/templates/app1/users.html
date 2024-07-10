@@ -15,18 +15,33 @@
 
     <a href="{% url 'add_page' %}" class="addpage-button">Добавить запись</a>
 
-
-
-
-{% for info in infos %}
-    <div class="info-item">
+    {% for info in infos %}
+    <div class="info-item" id="info-item-{{ info.id }}">
         <h2>{{ info.username }}</h2>
         <p>Почта: {{ info.email }}</p>
         <p>Номер: {{ info.number }}</p>
-        <p>Создано: {{ info.time_create }}</p>
-        <p>Последнее редактирование: {{ info.time_update }}</p>
+        <p class = "data-info">Создано: {{ info.time_create }}</p>
+        <p class = "data-info">Последнее редактирование: {{ info.time_update }}</p>
+        <button class="edit-button" data-id="{{ info.id }}">Редактировать</button>
+        <button class="delete-button" data-id="{{ info.id }}">Удалить</button>
     </div>
-{% empty %}\\
+    <form id="edit-form-{{ info.id }}" class="edit-form" style="display: none;">
+    {% csrf_token %}
+        <div class="field">
+            <label for="username">Пользователь:</label>
+            <input type="text" id="username" name="username" value="{{ info.username }}">
+        </div>
+        <div class="field">
+            <label for="email">Почта:</label>
+            <input type="text" id="email" name="email" value="{{ info.email }}">
+        </div>
+        <div class="field">
+            <label for="number">Номер:</label>
+            <input type="text" id="number" name="number" value="{{ info.number }}">
+        </div>
+        <button type="submit">Сохранить</button>
+    </form>
+{% empty %}
     <p>Данных о пользователях нет</p>
 {% endfor %}
 

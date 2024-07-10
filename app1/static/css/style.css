@@ -84,9 +84,9 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    display: inline-block;  /* Чтобы элементы не занимали всю ширину */
+    display: inline-block;  
     text-align: left;
-    width: 80%;  /* Ширина элемента */
+    width: 80%; 
 }
 
 .info-item h2 {
@@ -114,7 +114,7 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     z-index: 1;
-    width: 30%;  /* Ширина всплывающего окна */
+    width: 30%; 
 
 }
 
@@ -229,7 +229,6 @@ footer {
     background-color: #f9f9f9;
 }
 
-/* Стили для меток формы */
 .custom-form .form-label {
     display: block;
     font-weight: bold;
@@ -237,7 +236,6 @@ footer {
     color: #333;
 }
 
-/* Стили для полей ввода */
 .custom-form input[type="text"],
 .custom-form input[type="email"],
 .custom-form input[type="number"],
@@ -250,13 +248,11 @@ footer {
     box-sizing: border-box;
 }
 
-/* Стили для чекбокса */
 .custom-form input[type="checkbox"] {
     width: auto;
     margin-right: 10px;
 }
 
-/* Стили для кнопок */
 .custom-form .form-button {
     display: inline-block;
     padding: 10px 20px;
@@ -271,10 +267,74 @@ footer {
     background-color: #4cae4c;
 }
 
-/* Стили для ошибок */
 .custom-form .error {
     color: red;
     font-size: 0.9em;
     margin-top: -10px;
     margin-bottom: 10px;
+}
+
+form.edit-form {
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+form.edit-form input[type="text"] {
+    background-color: #555;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 20px); 
+    border-radius: 5px;
+}
+
+form.edit-form button[type="submit"] {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form.edit-form button[type="submit"]:hover {
+    background-color: #e6b800;
+}
+
+.edit-button, .delete-button {
+    background-color: #ffcc00; 
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+    background-color: #927d2d;
+}
+
+.delete-button {
+    background-color: #f44336; 
+}
+
+.delete-button:hover {
+    background-color: #551a1a; 
+}
+.field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold; 
+    color: #efe695; 
 }
